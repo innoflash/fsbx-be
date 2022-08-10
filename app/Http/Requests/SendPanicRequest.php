@@ -27,22 +27,27 @@ class SendPanicRequest extends FormRequest
             'latitude' => [
                 'required',
                 'numeric',
-                $this->locationValidator()
+                $this->locationValidator('latitude')
             ],
             'longitude' => [
                 'required',
                 'numeric',
-                $this->locationValidator()
+                $this->locationValidator('longitude')
             ],
             'panic_type' => 'string|min:2',
             'details' => 'string|min:2'
         ];
     }
 
-    private function locationValidator(): callable
+    private function locationValidator(string $locationType): callable
     {
-        return function ($attribute, $value, $fail) {
-            $valid = preg_match('^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$', $value);
+        return function ($attribute, $value, $fail) use($locationType){
+            $valid = preg_match('/^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$/', $value);
+
+            if($locationType === 'longitude'){
+                $valid = preg_match('/^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$/', $value);
+            }
+
 
             if (!$valid) {
                 $fail('The ' . $attribute . ' is not a valid location attribute');

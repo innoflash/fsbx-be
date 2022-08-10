@@ -2,19 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Concerns\FSBXResponse;
 use App\Http\Requests\SendPanicRequest;
-use Illuminate\Http\Request;
+use App\Models\Panic;
+use Illuminate\Http\Response;
 
 class SendPanicController extends Controller
 {
+    use FSBXResponse;
+
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function __invoke(SendPanicRequest $request)
     {
-        //
+        $panic = Panic::create([
+            ...$request->validated(),
+            'user_id' => auth()->id()
+        ]);
+
+        return $this->response(
+            data: ['panic_id' => $panic->id],
+            statusCode: Response::HTTP_CREATED
+        );
     }
 }
