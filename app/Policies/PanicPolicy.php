@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Panic;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class PanicPolicy
 {
@@ -65,7 +66,9 @@ class PanicPolicy
      */
     public function delete(User $user, Panic $panic)
     {
-        //
+        return $panic->user_id === $user->id
+            ? Response::allow()
+            : Response::deny('You can not cancel a panic you did not create.');
     }
 
     /**

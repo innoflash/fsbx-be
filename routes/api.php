@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CancelPanicController;
+use App\Http\Controllers\GetPanicsController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SendPanicController;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +27,7 @@ Route::middleware('auth:api')
             ->prefix('panics')
             ->group(function () {
                 Route::post('', SendPanicController::class)->name('send');
+                Route::post('{panic}', CancelPanicController::class)->name('cancel');
+                Route::get('', GetPanicsController::class)->name('fetch');
             });
     });

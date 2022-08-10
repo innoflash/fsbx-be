@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Concerns\FSBXResponse;
 use App\Http\Requests\SendPanicRequest;
 use App\Models\Panic;
 use Illuminate\Http\Response;
 
 class SendPanicController extends Controller
 {
-    use FSBXResponse;
-
     /**
      * Handle the incoming request.
      *
