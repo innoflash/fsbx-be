@@ -10,6 +10,14 @@ class Panic extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id',
+        'latitude',
+        'longitude',
+        'details',
+        'panic_type'
+    ];
+
     /**
      * Relates this panic to a user.
      * @return BelongsTo
