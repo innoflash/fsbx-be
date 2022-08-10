@@ -6,7 +6,7 @@ namespace App\Concerns;
 
 use Illuminate\Http\Response;
 
-trait ResponseMapper
+trait FSBXResponse
 {
     protected function response(
         string $status = 'success',
