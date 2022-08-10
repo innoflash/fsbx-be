@@ -23,6 +23,7 @@ return new class extends Migration {
             $table->string('panic_type')->nullable();
             $table->longText('details')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
