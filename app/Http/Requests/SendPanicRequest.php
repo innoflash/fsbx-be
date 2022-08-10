@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Panic;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SendPanicRequest extends FormRequest
@@ -13,7 +14,7 @@ class SendPanicRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->can('create', Panic::class);
     }
 
     /**
