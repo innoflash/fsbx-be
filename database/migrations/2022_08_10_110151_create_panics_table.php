@@ -20,7 +20,7 @@ return new class extends Migration {
                 ->cascadeOnDelete();
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('panic_type');
+            $table->string('panic_type')->nullable();
             $table->longText('details')->nullable();
             $table->timestamps();
         });
