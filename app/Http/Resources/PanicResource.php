@@ -15,11 +15,11 @@ class PanicResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'longitude' => $this->longitude,
-            'latitude' => $this->latitude,
+            'id'         => $this->id,
+            'longitude'  => $this->longitude,
+            'latitude'   => $this->latitude,
             'panic_type' => $this->panic_type,
-            'details' => $this->details,
+            'details'    => $this->details,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'created_by' => $this->whenLoaded('user', new UserResource($this->user))
         ];
