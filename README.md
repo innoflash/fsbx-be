@@ -1,6 +1,6 @@
 # Installation Manual
 
-## PHP version >= 8.0
+## PHP version >= 8.1
 ## Composer version: 2
 
 Here is how you will run this project. Its is making use of Laravel passport for OAuth2 authentication
