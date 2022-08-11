@@ -35,8 +35,8 @@ class SendPanicRequest extends FormRequest
                 'numeric',
                 $this->locationValidator('longitude')
             ],
-            'panic_type' => 'string|min:2',
-            'details' => 'string|min:2'
+            'panic_type' => 'nullable|string|min:2',
+            'details' => 'nullable|string|min:2'
         ];
     }
 

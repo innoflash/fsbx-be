@@ -22,6 +22,7 @@ class SendPanicController extends Controller
         ]);
 
         return $this->response(
+            message: 'Panic raised successfully',
             data: ['panic_id' => $panic->id],
             statusCode: Response::HTTP_CREATED
         );
